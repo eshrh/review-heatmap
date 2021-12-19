@@ -164,7 +164,7 @@ class ActivityReporter(object):
         """
         Return daily scheduling cutoff time in hours
         """
-        if self.col.sched_ver() == 2:
+        if self.col.schedVer() == 2:
             return self.col.conf.get("rollover", 4)
         start_date = datetime.datetime.fromtimestamp(self.col.crt)
         return start_date.hour
@@ -309,7 +309,7 @@ GROUP BY day ORDER BY day""".format(
         res = self.col.db.all(cmd, self.col.sched.today)
 
         if isDebuggingOn():
-            if mw.col.sched_ver() == 2:
+            if mw.col.schedVer() == 2:
                 offset = mw.col.conf.get("rollover", 4)
                 schedver = 2
             else:
